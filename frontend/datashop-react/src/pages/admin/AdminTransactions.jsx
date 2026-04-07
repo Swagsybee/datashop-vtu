@@ -1,0 +1,1 @@
+export default function AdminTransactions() { return <div className='text-white'><h1 className='text-2xl font-black mb-2'>AdminTransactions</h1><div className='bg-[#1c2333] rounded-2xl p-6 border border-white/[0.07] text-white/50'>Connects to Django API endpoints.</div></div> }
