@@ -1,0 +1,12 @@
+[phases.setup]
+nixPkgs = ["...", "python311"]
+
+[phases.build]
+cmds = [
+  "cd backend/datashop && pip install -r requirements.txt",
+  "cd backend/datashop && python manage.py collectstatic --noinput",
+  "cd backend/datashop && python manage.py migrate"
+]
+
+[start]
+cmd = "cd backend/datashop && gunicorn core.wsgi:application --bind 0.0.0.0:$PORT --workers 2"
