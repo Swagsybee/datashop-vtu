@@ -2,7 +2,6 @@ services:
   - type: web
     name: datashop-api
     env: python
-    runtime: python3.11
     rootDir: backend/datashop
     buildCommand: |
       pip install -r requirements.txt &&
@@ -10,6 +9,8 @@ services:
       python manage.py migrate
     startCommand: gunicorn core.wsgi:application --bind 0.0.0.0:$PORT --workers 2
     envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
       - key: SECRET_KEY
         generateValue: true
       - key: DEBUG
