@@ -2,10 +2,10 @@
   "$schema": "https://railway.app/railway.schema.json",
   "build": {
     "builder": "NIXPACKS",
-    "buildCommand": "python3 -m pip install -r backend/datashop/requirements.txt && python3 backend/datashop/manage.py collectstatic --noinput && python3 backend/datashop/manage.py migrate"
+    "buildCommand": "python3 -m venv /app/.venv && /app/.venv/bin/pip install -r backend/datashop/requirements.txt && /app/.venv/bin/python backend/datashop/manage.py collectstatic --noinput && /app/.venv/bin/python backend/datashop/manage.py migrate"
   },
   "deploy": {
-    "startCommand": "cd backend/datashop && gunicorn core.wsgi:application --bind 0.0.0.0:$PORT --workers 2",
+    "startCommand": "cd backend/datashop && /app/.venv/bin/gunicorn core.wsgi:application --bind 0.0.0.0:$PORT --workers 2",
     "restartPolicyType": "ON_FAILURE",
     "restartPolicyMaxRetries": 10
   }

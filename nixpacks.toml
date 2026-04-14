@@ -1,15 +1,13 @@
 [phases.setup]
 nixPkgs = ["python311"]
 
-[phases.install]
-cmds = ["python3 -m ensurepip --upgrade && python3 -m pip install --upgrade pip"]
-
 [phases.build]
 cmds = [
-  "cd backend/datashop && python3 -m pip install -r requirements.txt",
-  "cd backend/datashop && python3 manage.py collectstatic --noinput",
-  "cd backend/datashop && python3 manage.py migrate"
+  "python3 -m venv /app/.venv",
+  "/app/.venv/bin/pip install -r backend/datashop/requirements.txt",
+  "/app/.venv/bin/python backend/datashop/manage.py collectstatic --noinput",
+  "/app/.venv/bin/python backend/datashop/manage.py migrate"
 ]
 
 [start]
-cmd = "cd backend/datashop && gunicorn core.wsgi:application --bind 0.0.0.0:$PORT --workers 2"
+cmd = "cd backend/datashop && /app/.venv/bin/gunicorn core.wsgi:application --bind 0.0.0.0:$PORT --workers 2"
