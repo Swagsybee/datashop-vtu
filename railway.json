@@ -5,7 +5,7 @@
     "buildCommand": "pip install -r backend/datashop/requirements.txt && python backend/datashop/manage.py collectstatic --noinput && python backend/datashop/manage.py migrate"
   },
   "deploy": {
-    "startCommand": "cd backend/datashop && gunicorn core.wsgi:application --bind 0.0.0.0:$PORT",
+    "startCommand": "cd backend/datashop && gunicorn core.wsgi:application --bind 0.0.0.0:$PORT --workers 2",
     "restartPolicyType": "ON_FAILURE",
     "restartPolicyMaxRetries": 10
   }
