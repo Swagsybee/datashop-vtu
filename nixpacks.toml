@@ -1,11 +1,14 @@
 [phases.setup]
 nixPkgs = ["python311"]
 
+[phases.install]
+cmds = ["python3 -m ensurepip --upgrade && python3 -m pip install --upgrade pip"]
+
 [phases.build]
 cmds = [
-  "cd backend/datashop && pip install -r requirements.txt",
-  "cd backend/datashop && python manage.py collectstatic --noinput",
-  "cd backend/datashop && python manage.py migrate"
+  "cd backend/datashop && python3 -m pip install -r requirements.txt",
+  "cd backend/datashop && python3 manage.py collectstatic --noinput",
+  "cd backend/datashop && python3 manage.py migrate"
 ]
 
 [start]

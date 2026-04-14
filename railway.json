@@ -2,7 +2,7 @@
   "$schema": "https://railway.app/railway.schema.json",
   "build": {
     "builder": "NIXPACKS",
-    "buildCommand": "pip install -r backend/datashop/requirements.txt && python backend/datashop/manage.py collectstatic --noinput && python backend/datashop/manage.py migrate"
+    "buildCommand": "python3 -m pip install -r backend/datashop/requirements.txt && python3 backend/datashop/manage.py collectstatic --noinput && python3 backend/datashop/manage.py migrate"
   },
   "deploy": {
     "startCommand": "cd backend/datashop && gunicorn core.wsgi:application --bind 0.0.0.0:$PORT --workers 2",
